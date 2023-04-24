@@ -1,0 +1,44 @@
+.Inp {
+    box-sizing: border-box;
+    position: absolute;
+    left: 20rem;
+    top: 105px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 6px;
+    width: 36rem;
+    height: 2.4rem;
+    padding: 0.7rem 2rem;
+    font-weight: 400;
+    font-size: 16px;
+    
+}
+
+.TextArea {
+    box-sizing: border-box;
+    position: absolute;
+    width: 36rem;
+    height: 21rem;
+    left: 20rem;
+    top: 170px;
+    background: #FFFFFF;
+    border: 2px solid #59596B;
+    border-radius: 6px;
+    padding: 0.7rem 2rem;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 135%;
+}
+
+.blue-background {
+    background-color: #F5F5F5;
+    width: 80vw;
+    display: inline-block;
+    height: 100vh;
+  }
+
+body {
+    height: 100%;
+    width: 100%;
+    
+}
