@@ -27,14 +27,15 @@ const renderTime = ({ remainingTime }) => {
 };
 
 export const Stream = () => {
-  const { streamTime } = useLocation().state;
+  const location = useLocation();
+  const streamTime = location.state?.streamTime || 2;
   const [showModal, setShowModal] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [count, setCount] = useState(0);
 
-  const time = streamTime * 60 || 120;
+  const time = streamTime * 60;
 
   const setWordsCount = () => {
     if (text.trim() === "") {
