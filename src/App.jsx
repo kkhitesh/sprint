@@ -8,7 +8,7 @@ function App() {
     <div className="h-screen">
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/sprint" element={<Stream />} />
+        <Route path="/new" element={<Stream />} />
       </Routes>
     </div>
   );

@@ -4,6 +4,9 @@ import { BiRefresh } from "react-icons/bi";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { Modal } from "../components/Modal";
 import { useState } from "react";
+import { Toaster, toast } from "react-hot-toast";
+import { useLocation } from "react-router-dom";
+import { ShareModal } from "../components/ShareModal";
 
 const renderTime = ({ remainingTime }) => {
   if (remainingTime === 0) {
@@ -24,11 +27,33 @@ const renderTime = ({ remainingTime }) => {
 };
 
 export const Stream = () => {
+  const { streamTime } = useLocation().state;
   const [showModal, setShowModal] = useState(false);
+  const [showShareModal, setShowShareModal] = useState(false);
+  const [title, setTitle] = useState("");
+  const [text, setText] = useState("");
+  const [count, setCount] = useState(0);
+
+  const time = streamTime * 60 || 120;
+
+  const setWordsCount = () => {
+    if (text.trim() === "") {
+      setCount(0);
+    } else {
+      const cleanedText = text.replace(/(<([^>]+)>)/gi, "");
+      const words = cleanedText.trim().split(/\s+/);
+      setCount(words.length);
+    }
+  };
 
   return (
     <>
+      <Toaster />
       <Modal showModal={showModal} setShowModal={setShowModal} />
+      <ShareModal
+        showShareModal={showShareModal}
+        setShowShareModal={setShowShareModal}
+      />
       <Header />
       <div className="h-full flex">
         <div className="w-1/4 bg-rect h-full bg-cover">
@@ -36,12 +61,12 @@ export const Stream = () => {
           <div className="flex justify-center mt-10">
             <CountdownCircleTimer
               isPlaying
-              duration={12}
+              duration={time}
               size={180}
               colors="#0D21A1"
               trailColor="#00E6E5"
-              colorsTime={[10, 6, 3, 0]}
               onComplete={() => setShowModal(true)}
+              onUpdate={setWordsCount}
               strokeWidth={32}
               strokeLinecap="butt"
             >
@@ -53,7 +78,9 @@ export const Stream = () => {
               Be sure to Copy & Paste <br />
               your Work
             </h3>
-            <h2 className="font-bold font-kalam text-2xl mt-10">Word Count:</h2>
+            <h2 className="font-bold font-kalam text-2xl mt-10">
+              Word Count: {count}
+            </h2>
           </div>
         </div>
         <div className="flex bg-amber-50 w-full mt-1">
@@ -62,22 +89,37 @@ export const Stream = () => {
               type="text"
               className="p-3 w-[85%] rounded-xl border-2 border-gray-300 shadow-md"
               placeholder="   Title..."
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
             <div className="h-[75%] w-[85%] resize-none rounded-xl border-2 border-gray-300 bg-white shadow-lg">
               <textarea
                 className="resize-none w-[95%] mx-[2.5%] h-[82%] mt-5  outline-none overflow-auto"
                 placeholder="Start writing..."
+                value={text}
+                onChange={(e) => setText(e.target.value)}
               />
               <div className="flex mx-[2.5%] mt-3 text-2xl w-full gap-5">
-                <span className="bg-orange-400/80 p-2 rounded-full">
+                <span
+                  className="bg-orange-400/80 p-2 rounded-full"
+                  onClick={() => {
+                    navigator.clipboard.writeText(text);
+                    toast.success("Copied to clipboard!");
+                  }}
+                >
                   <MdContentCopy />
                 </span>
-                <span className="bg-orange-400/80 p-2 rounded-full">
+                <span
+                  className="bg-orange-400/80 p-2 rounded-full"
+                  onClick={() => setShowShareModal(true)}
+                >
                   <MdShare />
                 </span>
-                <span className="bg-orange-400/80 p-2 rounded-full ">
-                  <BiRefresh />
-                </span>
+                {count < 1 && (
+                  <span className="bg-orange-400/80 p-2 rounded-full ">
+                    <BiRefresh />
+                  </span>
+                )}
                 <button className="bg-orange-400/80 py-2 px-5 rounded-full ml-auto mr-14 text-sm text-gray-700 font-semibold font-kalam">
                   Start New Stream
                 </button>
