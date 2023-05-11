@@ -7,6 +7,8 @@ import { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { useLocation } from "react-router-dom";
 import { ShareModal } from "../components/ShareModal";
+import { ReturnModal } from "../components/ReturnModal";
+import { getRandomPrompt } from "../utils/Prompts";
 
 const renderTime = ({ remainingTime }) => {
   if (remainingTime === 0) {
@@ -31,9 +33,17 @@ export const Stream = () => {
   const streamTime = location.state?.streamTime || 2;
   const [showModal, setShowModal] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
+  const [showReturnModal, setShowReturnModal] = useState(false);
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [count, setCount] = useState(0);
+  const [prompt, setPrompt] = useState(getRandomPrompt());
+
+  console.log(prompt);
+
+  const changePrompt = () => {
+    setPrompt(getRandomPrompt());
+  };
 
   const time = streamTime * 60;
 
@@ -55,6 +65,10 @@ export const Stream = () => {
         showShareModal={showShareModal}
         setShowShareModal={setShowShareModal}
       />
+      <ReturnModal
+        showModal={showReturnModal}
+        setShowModal={setShowReturnModal}
+      />
       <Header />
       <div className="h-full flex">
         <div className="w-1/4 bg-rect h-full bg-cover">
@@ -75,12 +89,12 @@ export const Stream = () => {
             </CountdownCircleTimer>
           </div>
           <div className="text-white flex flex-col items-center m-10 ">
-            <h3 className="text-lg font-semibold">
-              Be sure to Copy & Paste <br />
-              your Work
+            <h3 className="text-md font-semibold">
+              Be sure to copy and paste <br />
+              your work.
             </h3>
             <h2 className="font-bold font-kalam text-2xl mt-10">
-              Word Count: {count}
+              Word Count: <br /> <span className="ml-12">{count}</span>
             </h2>
           </div>
         </div>
@@ -88,15 +102,15 @@ export const Stream = () => {
           <div className="w-full flex flex-col items-center gap-5 mt-10">
             <input
               type="text"
-              className="p-3 w-[85%] rounded-xl border-2 border-gray-300 shadow-md"
-              placeholder="   Title..."
+              className="p-3 w-[85%] rounded-xl border-2 border-gray-300 shadow-md outline-none pl-6"
+              placeholder="Title..."
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
             <div className="h-[75%] w-[85%] resize-none rounded-xl border-2 border-gray-300 bg-white shadow-lg">
               <textarea
                 className="resize-none w-[95%] mx-[2.5%] h-[82%] mt-5  outline-none overflow-auto"
-                placeholder="Start writing..."
+                placeholder={`Let your imagination run wild and write a thrilling story. Need inspiration? How about a \n\n${prompt}. \n\nOr come up with something entirely on your own. Either way, let your creativity flow and see where it takes you!`}
                 value={text}
                 onChange={(e) => setText(e.target.value)}
               />
@@ -117,11 +131,17 @@ export const Stream = () => {
                   <MdShare />
                 </span>
                 {count < 1 && (
-                  <span className="bg-orange-400/80 p-2 rounded-full ">
+                  <span
+                    className="bg-orange-400/80 p-2 rounded-full"
+                    onClick={changePrompt}
+                  >
                     <BiRefresh />
                   </span>
                 )}
-                <button className="bg-orange-400/80 py-2 px-5 rounded-full ml-auto mr-14 text-sm text-gray-700 font-semibold font-kalam">
+                <button
+                  className="bg-orange-400/80 py-2 px-5 rounded-full ml-auto mr-14 text-sm text-gray-700 font-semibold font-kalam"
+                  onClick={() => setShowReturnModal(true)}
+                >
                   Start New Stream
                 </button>
               </div>

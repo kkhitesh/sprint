@@ -1,3 +1,4 @@
+import badge from "../assets/badge.png";
 // eslint-disable-next-line react/prop-types
 export const ShareModal = ({ showShareModal, setShowShareModal }) => {
   return (
@@ -22,9 +23,10 @@ export const ShareModal = ({ showShareModal, setShowShareModal }) => {
                 </div>
                 {/*body*/}
                 <div className="p-5 flex items-center justify-center flex-col">
-                  <h1 className="font-semibold text-2xl mb-5 font-kalam">
+                  <h1 className="font-semibold text-2xl font-kalam">
                     Share Your Breakthrough!
                   </h1>
+                  <img src={badge} alt="Badge" className="h-56 w-72 p-3" />
                   <h2 className="font-semibold text-lg ml-10 font-kalam">
                     A word a day keeps the writer&apos;s block away.
                   </h2>
