@@ -22,17 +22,17 @@ export const Modal = ({ showModal, setShowModal }) => {
                 </div>
                 {/*body*/}
                 <div className="p-5 flex items-center justify-center flex-col">
-                  <h1 className="font-semibold text-2xl mb-5 font-kalam">
+                  <h1 className="font-semibold text-2xl mb-5 ">
                     Your Stream is Complete!
                   </h1>
-                  <h2 className="font-semibold text-lg ml-10 font-kalam">
+                  <h2 className="font-semibold text-lg ml-10 ">
                     Be sure to copy and paste your work before leaving the
                     streamzone.{" "}
                   </h2>
                   <h3 className="text-lg mt-5">
                     And, Share your Badge with Friends.
                   </h3>
-                  <p className="text-md mt-5">
+                  <p className="text-md mt-5 text-gray-600">
                     Word count stops counting after the timer ends.
                     <br /> Return to the homepage to start another sprint
                   </p>

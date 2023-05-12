@@ -4,7 +4,7 @@ import { BiRefresh } from "react-icons/bi";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { Modal } from "../components/Modal";
 import { useState } from "react";
-import { Toaster, toast } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import { useLocation } from "react-router-dom";
 import { ShareModal } from "../components/ShareModal";
 import { ReturnModal } from "../components/ReturnModal";
@@ -59,7 +59,6 @@ export const Stream = () => {
 
   return (
     <>
-      <Toaster />
       <Modal showModal={showModal} setShowModal={setShowModal} />
       <ShareModal
         showShareModal={showShareModal}
@@ -110,13 +109,13 @@ export const Stream = () => {
             <div className="h-[75%] w-[85%] resize-none rounded-xl border-2 border-gray-300 bg-white shadow-lg">
               <textarea
                 className="resize-none w-[95%] mx-[2.5%] h-[82%] mt-5  outline-none overflow-auto"
-                placeholder={`Let your imagination run wild and write a thrilling story. Need inspiration? How about a \n\n${prompt}. \n\nOr come up with something entirely on your own. Either way, let your creativity flow and see where it takes you!`}
+                placeholder={`Let your imagination run wild and write a thrilling story. Need inspiration? How about a \n\n${prompt} \n\nOr come up with something entirely on your own. Either way, let your creativity flow and see where it takes you!`}
                 value={text}
                 onChange={(e) => setText(e.target.value)}
               />
               <div className="flex mx-[2.5%] mt-3 text-2xl w-full gap-5">
                 <span
-                  className="bg-orange-400/80 p-2 rounded-full"
+                  className="bg-orange-400/80 p-2 rounded-full hover:bg-orange-400/60"
                   onClick={() => {
                     navigator.clipboard.writeText(text);
                     toast.success("Copied to clipboard!");
@@ -125,21 +124,21 @@ export const Stream = () => {
                   <MdContentCopy />
                 </span>
                 <span
-                  className="bg-orange-400/80 p-2 rounded-full"
+                  className="bg-orange-400/80 p-2 rounded-full hover:bg-orange-400/60"
                   onClick={() => setShowShareModal(true)}
                 >
                   <MdShare />
                 </span>
                 {count < 1 && (
                   <span
-                    className="bg-orange-400/80 p-2 rounded-full"
+                    className="bg-orange-400/80 p-2 rounded-full hover:bg-orange-400/60"
                     onClick={changePrompt}
                   >
                     <BiRefresh />
                   </span>
                 )}
                 <button
-                  className="bg-orange-400/80 py-2 px-5 rounded-full ml-auto mr-14 text-sm text-gray-700 font-semibold font-kalam"
+                  className="bg-orange-400/80 py-2 px-5 rounded-full ml-auto mr-14 text-sm text-gray-700 font-semibold font-kalam hover:bg-orange-400/60"
                   onClick={() => setShowReturnModal(true)}
                 >
                   Start New Stream

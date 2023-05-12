@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
-// import { Sprint } from "./pages/sprint/Sprint";
 import { Stream } from "./pages/stream";
 
 function App() {
