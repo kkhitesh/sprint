@@ -45,7 +45,7 @@ export const ShareModal = ({ showShareModal, setShowShareModal }) => {
                 {/*footer*/}
                 <div className="flex items-center justify-center gap-10 pb-6 rounded-b">
                   <TwitterShareButton
-                    url="www.sprint-nu.vercel.app"
+                    url="https://sprint-nu.vercel.app"
                     title={"I just wrote 500 words with Stream!"}
                     hashtags={["Stream"]}
                   >
@@ -53,7 +53,7 @@ export const ShareModal = ({ showShareModal, setShowShareModal }) => {
                   </TwitterShareButton>
 
                   <FacebookShareButton
-                    url="www.sprint-nu.vercel.app"
+                    url="https://sprint-nu.vercel.app"
                     title="I just wrote 500 words with Stream!"
                     hashtag="#Stream"
                   >
