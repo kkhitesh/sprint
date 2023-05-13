@@ -11,10 +11,10 @@ export const Home = () => {
       <div className="h-full ">
         <Header />
         <div className="h-2/3 flex bg-hero bg-cover flex-col items-center justify-center text-white gap-3">
-          <h1 className="font-bold text-5xl  font-kalam">
-            Flow through writer&apos;s block.
+          <h1 className="font-bold text-5xl  font-inter leading-tight">
+            Flow through writer&apos;s block
           </h1>
-          <p className="font-kalam font-semibold text-2xl">
+          <p className="font-inter font-semibold text-2xl">
             Select your session and start writing
           </p>
           <div className="flex gap-5 mt-5 text-black font-semibold font-sans">

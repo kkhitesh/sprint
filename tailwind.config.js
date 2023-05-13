@@ -6,6 +6,7 @@ export default {
       fontFamily: {
         kalam: ["Kalam", "cursive"],
         baloo: ["Baloo Bhai 2", "cursive"],
+        inter: ["Inter", "cursive"],
       },
       backgroundImage: {
         hero: "url('/src/assets/Hero.png')",

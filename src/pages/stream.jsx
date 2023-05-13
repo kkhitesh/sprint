@@ -13,7 +13,7 @@ import { getRandomPrompt } from "../utils/Prompts";
 const renderTime = ({ remainingTime }) => {
   if (remainingTime === 0) {
     return (
-      <div className="font-semibold text-white text-3xl font-kalam">
+      <div className="font-semibold text-white text-3xl font-inter">
         Well <br />
         Done!
       </div>
@@ -89,10 +89,9 @@ export const Stream = () => {
           </div>
           <div className="text-white flex flex-col items-center m-10 ">
             <h3 className="text-md font-semibold">
-              Be sure to copy and paste <br />
-              your work.
+              Be sure to copy and paste your work.
             </h3>
-            <h2 className="font-bold font-kalam text-2xl mt-10">
+            <h2 className="font-bold font-inter text-2xl mt-10">
               Word Count: <br /> <span className="ml-12">{count}</span>
             </h2>
           </div>
@@ -138,7 +137,7 @@ export const Stream = () => {
                   </span>
                 )}
                 <button
-                  className="bg-orange-400/80 py-2 px-5 rounded-full ml-auto mr-14 text-sm text-gray-700 font-semibold font-kalam hover:bg-orange-400/60"
+                  className="bg-orange-400/80 py-2 px-5 rounded-full ml-auto mr-14 text-sm text-gray-700 font-semibold font-inter hover:bg-orange-400/60"
                   onClick={() => setShowReturnModal(true)}
                 >
                   Start New Stream
